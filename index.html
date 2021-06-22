@@ -76,12 +76,18 @@
                 class="form-control"
                  id="taskdescription" 
                  aria-describedby="Task Description"
-                 placeholder="eg: Describe your task in detail"></textarea>
+                 placeholder="eg: Describe your task in detail">
+                </textarea>
               </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" 
+          class="btn btn-secondary" 
+          data-bs-dismiss="modal">Close</button>
+          <button type="button" 
+          class="btn btn-primary" 
+          onclick="saveChanges()" 
+          data-bs-dismiss="modal">Save changes</button>
         </div>
       </div>
     </div>
@@ -127,7 +133,7 @@
 
         <!-- CARD -->
         <section>
-            <div class="row">
+            <div class="row task_container"  >
                 <div class="col-md-6 col-lg-4 ">
                     <div class="card ">
                         <div class="card-header d-flex justify-content-end gap-2">
@@ -136,9 +142,9 @@
                         </div>
                         <img src="https://source.unsplash.com/500x500/?Nature" class="card-img-top" alt="TaskImage">
                         <div class="card-body">
-                          <h5 class="card-title">Special title treatment</h5>
-                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          <h5 class="card-title">Task Title Example </h5>
+                          <p class="card-text"> Task description in details</p>
+                          <a href="#" class="btn btn-primary">Task Type </a>
                         </div>
                         <div class="card-footer">
                             <button type="button" class="btn btn-outline-primary float-end">Open Task</button> 
@@ -168,8 +174,8 @@
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"></script>
 
-        <!-- Out jasascript  -->
-        <script>
+        <!-- Our jasascript  -->
+        <script src="index.js">
 
         </script>
 

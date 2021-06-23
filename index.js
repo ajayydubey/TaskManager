@@ -1,13 +1,15 @@
 const taskContainer =document.querySelector(".task_container");
 
-const globalStore = [];
+let globalStore = [];
 
 const genrateNewCard =(taskData) => `
-<div class="col-md-6 col-lg-4" id=${taskData.id} >
+<div class="col-md-6 col-lg-4"  >
                     <div class="card ">
                         <div class="card-header d-flex justify-content-end gap-2">
                             <button type="button" class="btn btn-outline-success"><i class="fas fa-pen-square"></i></button>
-                            <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
+                            <button type="button" class="btn btn-outline-danger" 
+                            id=${taskData.id} onClick="deleteCard.appy(this,arguments)">
+                             <i class="fas fa-trash"  id=${taskData.id} onClick="deleteCard.appy(this,arguments)"></i></button>
                         </div>
                         <img src=${taskData.imageUrl} class="card-img-top" alt="TaskImage">
                         <div class="card-body">
@@ -23,7 +25,6 @@ const genrateNewCard =(taskData) => `
 
                 </div>
                 `;
-
 
 
 const loadInitialCardData = () => {
@@ -42,12 +43,10 @@ const loadInitialCardData = () => {
         globalStore.push(cardObject);
 
 
-       }) 
+       })
     
 
 };
-
-
 
 
 const saveChanges = () => {
@@ -64,3 +63,31 @@ const saveChanges = () => {
  localStorage.setItem("taskmanager", JSON.stringify({cards:globalStore}));
 
 };
+
+const deleteCard = (event) =>{
+    //id 
+    event=window.event;
+
+    event.targetID=event.target.id;
+    const tagname=even.target.tagname;
+
+    //match the id of element with id inside the globalstore 
+
+    //if match forund remove
+    globalStore=globalStore.filter( (cardObject)=> cardObject.id !==targetID);
+    localStorage.setItem("taskmanager", JSON.stringify({cards:globalStore}));
+
+    
+    //contacct parent 
+    // taskContainer.removeChild(document.getElementById(targetID))    
+    if(tagname=="BUTTON")
+    {
+        return taskContainer.removeChild(event.target.parentNode.parentNode.parentNode)
+    }
+    else 
+    {
+        return taskContainer.removeChild(event.target.parentNode.parentNode.parentNode.parentNode)
+    }
+
+
+}

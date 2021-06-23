@@ -19,16 +19,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-
-
     <!-- our CSS -->
     <link rel="stylesheet" href="style.css">
     <title>TaskManager</title>
 </head>
-
-<body>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ 
+<body onload="loadInitialCardData()">
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -133,41 +131,15 @@
 
         <!-- CARD -->
         <section>
-            <div class="row task_container"  >
-                <div class="col-md-6 col-lg-4 ">
-                    <div class="card ">
-                        <div class="card-header d-flex justify-content-end gap-2">
-                            <button type="button" class="btn btn-outline-success"><i class="fas fa-pen-square"></i></button>
-                            <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
-                        </div>
-                        <img src="https://source.unsplash.com/500x500/?Nature" class="card-img-top" alt="TaskImage">
-                        <div class="card-body">
-                          <h5 class="card-title">Task Title Example </h5>
-                          <p class="card-text"> Task description in details</p>
-                          <a href="#" class="btn btn-primary">Task Type </a>
-                        </div>
-                        <div class="card-footer">
-                            <button type="button" class="btn btn-outline-primary float-end">Open Task</button> 
-                        </div>
-                      </div>
+            <div class="row task_container">
 
-                </div>
-            </div>
-            
-        </section>
+            </div> 
+        </section> 
         
 
 
 
     </main>
-
-
-
-
-
-
-
-
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"

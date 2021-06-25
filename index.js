@@ -32,14 +32,14 @@ const genrateNewCard = (taskData) => `
   
  
      const loadInitialCardData = () => {
-    
+    console.log("AAAAAAAAAAa")
     // localstorage to get taskmanager card  data 
     const getCardData = localStorage.getItem("tasky");
 
 
     // convertfrom string  to normal object 
     const {cards} = JSON.parse(getCardData);
-     
+    console.log(cards); 
 
     // loop over those array of task object to create html card,inject it to dom 
     cards.map((cardObject) => {
@@ -52,6 +52,9 @@ const genrateNewCard = (taskData) => `
 
 
 };
+//  loadInitialCardData();
+
+
 
 
 const saveChanges = () => {
@@ -62,7 +65,9 @@ const saveChanges = () => {
         taskType: document.getElementById("tasktype").value,
         taskDescription: document.getElementById("taskdescription").value,
     };
-    taskContainer.insertAdjacentHTML("beforeend", genrateNewCard( taskData));
+    const card=genrateNewCard( taskData);
+    taskContainer.insertAdjacentHTML("beforeend",card);
+    globalStore.push(card);
     localStorage.setItem("tasky",JSON.stringify({cards:globalStore}));
     
 

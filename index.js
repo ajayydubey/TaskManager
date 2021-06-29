@@ -46,13 +46,13 @@ const loadInitialCardData = () => {
 
     // loop over those array of task object to create html card,inject it to dom 
     cards.map((cardObject) => {
-    const createNewCard=newCard(cardObject)
-    taskContainer.insertAdjacentHTML("beforeend", createNewCard(cardObject));
+    const createNewCard=newCard(cardObject);
+    taskContainer.insertAdjacentHTML("beforeend",createNewCard);
 
     // update our global storage 
     globalStore.push(cardObject);
    
-    })
+    });  
 
 
 };
@@ -91,11 +91,7 @@ const deleteCard = (event) => {
     //if match forund remove
     globalStore = globalStore.filter((cardObject) => cardObject.id !== targetID);
     updateLocalStorage();   
-    localStorage.setItem("tasky", JSON.stringify({cards:globalStore}));
-
-     
-
-
+    
     //contacct parent 
     // taskContainer.removeChild(document.getElementById(targetID))    
     if (tagname === "BUTTON") {
@@ -106,8 +102,6 @@ const deleteCard = (event) => {
     return taskContainer.removeChild(
         event.target.parentNode.parentNode.parentNode.parentNode
         );
-    
-
 
 };
 
@@ -130,10 +124,10 @@ const editCard = (event) => {
     }
 
 
-    let taskTitle=parentElement.childNodes[5].childNodes[1];
-    let taskDescription=parentElement.childNodes[5].childNodes[3];
-    let taskType=parentElement.childNodes[5].childNodes[5];
-    let submitButton=parentElement.childNodes[7].childNodes[1];
+    let taskTitle= parentElement.childNodes[5].childNodes[1];
+    let taskDescription= parentElement.childNodes[5].childNodes[3];
+    let taskType= parentElement.childNodes[5].childNodes[5];
+    let submitButton=  parentElement.childNodes[7].childNodes[1];
     
     //setAttributes
     taskTitle.setAttribute("contenteditable","true");
@@ -164,7 +158,9 @@ event = window.event;
         parentElement = event.target.parentNode.parentNode.parentNode;
     }
 
+    console.log(parentElement.childNodes);
     let taskTitle=parentElement.childNodes[5].childNodes[1];
+    
     let taskDescription=parentElement.childNodes[5].childNodes[3];
     let taskType=parentElement.childNodes[5].childNodes[5];
     let submitButton=parentElement.childNodes[7].childNodes[1];
@@ -190,4 +186,11 @@ event = window.event;
         return task;  //Important 
     });
     updateLocalStorage();
+
+    taskTitle.setAttribute("contenteditable","false");
+    taskDescription.setAttribute("contenteditable","false");
+    taskType.setAttribute("contenteditable","false");
+
+    submitButton.removeAttribute("onClick");
+    submitButton.innerHTML="Open task";
 };

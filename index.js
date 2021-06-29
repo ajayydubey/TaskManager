@@ -7,7 +7,10 @@ const genrateNewCard = (taskData) => `
                     <div class="cards">
                         <div class="card-header d-flex justify-content-end gap-2">
 
-                            <button type="button" class="btn btn-outline-success"><i class="fas fa-pen-square"></i></button>
+                            <button type="button" class="btn btn-outline-success" 
+                            id=${taskData.id} onClick="editCard.apply(this,arguments)">
+                            <i class="fas fa-pen-square" id=${taskData.id} onClick="editCard.apply(this,arguments)"></i></button>
+
                             <button type="button" class="btn btn-outline-danger" 
                             id=${taskData.id} onClick="deleteCard.apply(this,arguments)">
                              <i class="fas fa-trash"  id=${taskData.id} onClick="deleteCard.apply(this,arguments)"></i></button>
@@ -86,6 +89,8 @@ const deleteCard = (event) => {
     globalStore = globalStore.filter((cardObject) => cardObject.id !== targetID);
     localStorage.setItem("tasky", JSON.stringify({cards:globalStore}));
 
+     
+
 
     //contacct parent 
     // taskContainer.removeChild(document.getElementById(targetID))    
@@ -95,6 +100,43 @@ const deleteCard = (event) => {
     else {
         return taskContainer.removeChild(event.target.parentNode.parentNode.parentNode.parentNode)
     }
+
+
+};
+
+const editCard = (event) => {
+
+    event = window.event;
+    const targetID = event.target.id;
+    const tagname = event.target.tagname;
+
+    
+    let parentElement;
+
+    if(tagname==="BUTTON")
+    {
+       parentElement = event.target.parentNode.parentNode; 
+    }
+    else 
+    {
+        parentElement = event.target.parentNode.parentNode.parentNode;
+    }
+
+
+    let taskTitle=parentElement.childNodes[5].childNodes[1];
+    let taskDescription=parentElement.childNodes[5].childNodes[3];
+    let taskType=parentElement.childNodes[5].childNodes[5];
+    let submitButton=parentElement.childNodes[7].childNodes[1];
+    
+    //setAttributes
+    taskTitle.setAttribute("contenteditable","true");
+    taskDescription.setAttribute("contenteditable","true");
+    taskType.setAttribute("contenteditable","true");
+
+    submitButton.innerHTML="Save changes";
+
+
+
 
 
 }
